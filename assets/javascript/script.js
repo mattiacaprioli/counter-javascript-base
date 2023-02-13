@@ -1,39 +1,50 @@
-function decrement() {
-    var count = document.getElementById("count");
-    var currentCount = parseInt(count.innerHTML);
-    count.innerHTML = currentCount - 1;
-    if(currentCount - 1 < 0){
-      count.classList.remove("text-neutral-700");
-      count.classList.add("text-red-500");
-    }else if(currentCount - 1 > 0){
-      count.classList.remove("text-neutral-700");
-      count.classList.add("text-green-500");
-    }else{
-      count.classList.remove("text-red-500");
-      count.classList.remove("text-green-500");
-      count.classList.add("text-neutral-700");
-    }
-  }
-  function increment() {
-    var count = document.getElementById("count");
-    var currentCount = parseInt(count.innerHTML);
-    count.innerHTML = currentCount + 1;
-    if(currentCount + 1 < 0){
-      count.classList.remove("text-neutral-700");
-      count.classList.add("text-red-500");
-    }else if(currentCount + 1 > 0){
-      count.classList.remove("text-neutral-700");
-      count.classList.add("text-green-500");
-    }else{
-      count.classList.remove("text-red-500");
-      count.classList.remove("text-green-500");
-      count.classList.add("text-neutral-700");
-    }
-  }
-  function reset() {
-    var count = document.getElementById("count");
-    count.innerHTML = 0;
-    count.classList.remove("text-red-500");
-    count.classList.remove("text-green-500");
-    count.classList.add("text-neutral-700");
-  }
+// Creazione degli elementi
+
+const contenitore = document.getElementById("contenitore");
+
+const innerDiv = document.createElement("div");
+innerDiv.className = "flex justify-center items-center";
+contenitore.appendChild(innerDiv);
+
+const btnMeno = document.createElement("button");
+btnMeno.className = "bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded-sm mr-4";
+btnMeno.appendChild(document.createTextNode("-"));
+innerDiv.appendChild(btnMeno);
+
+const valore = document.createElement("p");
+valore.className = "text-center text-6xl font-medium text-neutral-700 px-4 mr-4";
+valore.appendChild(document.createTextNode(0));
+innerDiv.appendChild(valore);
+
+const btnPiu = document.createElement("button");
+btnPiu.className = "bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded-sm";
+btnPiu.appendChild(document.createTextNode("+"));
+innerDiv.appendChild(btnPiu);
+
+const secondoInnerDiv = document.createElement("div");
+secondoInnerDiv.className = "flex justify-center items-center mt-5";
+contenitore.appendChild(secondoInnerDiv);
+
+const btnReset = document.createElement("button");
+btnReset.className = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-sm";
+btnReset.appendChild(document.createTextNode("Reset"));
+secondoInnerDiv.appendChild(btnReset);
+
+// funzioni dei bottoni
+
+let contatore = 0;
+
+btnMeno.onclick = function() {
+  contatore--;
+  valore.innerHTML = contatore;
+};
+
+btnPiu.onclick = function() {
+  contatore++;
+  valore.innerHTML = contatore;
+};
+
+btnReset.onclick = function() {
+  contatore = 0;
+  valore.innerHTML = contatore;
+};
